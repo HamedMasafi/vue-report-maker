@@ -19,7 +19,23 @@ export var model = {
     },
     myname(){return this.full_name_p('name', false, false, '')},
     myname_en(){return this.full_name_p('name', false, false, 'en')},
-    drname(name){return this.full_name_p(name, true, true, '')}
+    drname(name){return this.full_name_p(name, true, true, '')},
+    drname_en(name){return this.full_name_p(name, true, true, 'en')},
+    fa_number(name) {
+        if (this[name] == undefined)
+            return "";
+        return this[name]
+            .replace(/1/g, "۱")
+            .replace(/2/g, "۲")
+            .replace(/3/g, "۳")
+            .replace(/4/g, "۴")
+            .replace(/5/g, "۵")
+            .replace(/6/g, "۶")
+            .replace(/7/g, "۷")
+            .replace(/8/g, "۸")
+            .replace(/9/g, "۹")
+            .replace(/0/g, "۰");
+    }
 };
 export function Settings() {
     this.input = document.createElement("input");

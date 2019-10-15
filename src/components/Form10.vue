@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <td style="height: 4cm">استاد راهنما</td>
-                <td>{{ model.supervisor_full }}</td>
+                <td>{{ model.drname('supervisor') }}</td>
                 <td>{{ model.supervisor_grade }}</td>
                 <td>{{ model.supervisor_specialty }}</td>
                 <td>{{ model.supervisor_work_place }}</td>
@@ -62,7 +62,7 @@
             </tr>
             <tr>
                 <td style="height: 4cm">استاد داور</td>
-                <td>{{ model.arbiter_full }}</td>
+                <td>{{ model.drname('arbiter') }}</td>
                 <td>{{ model.arbiter_grade }}</td>
                 <td>{{ model.arbiter_specialty }}</td>
                 <td>{{ model.arbiter_work_place }}</td>
@@ -70,7 +70,7 @@
             </tr>
             <tr>
                 <td style="height: 4cm">استاد مشاور</td>
-                <td>{{ model.consultant_full }}</td>
+                <td>{{ model.drname('consultant') }}</td>
                 <td>{{ model.consultant_grade }}</td>
                 <td>{{ model.consultant_specialty }}</td>
                 <td>{{ model.consultant_work_place }}</td>
@@ -131,7 +131,7 @@
             </tr>
             <tr>
                 <td style="height: 4cm">Supervisor</td>
-                <td>{{ model.supervisor_full }}</td>
+                <td>{{ model.drname_en('supervisor') }}</td>
                 <td>{{ model.supervisor_grade }}</td>
                 <td>{{ model.supervisor_specialty }}</td>
                 <td>{{ model.supervisor_work_place }}</td>
@@ -139,7 +139,7 @@
             </tr>
             <tr>
                 <td style="height: 4cm">Arbiter</td>
-                <td>{{ model.arbiter_full }}</td>
+                <td>{{ model.drname_en('arbiter') }}</td>
                 <td>{{ model.arbiter_grade }}</td>
                 <td>{{ model.arbiter_specialty }}</td>
                 <td>{{ model.arbiter_work_place }}</td>
@@ -147,7 +147,7 @@
             </tr>
             <tr>
                 <td style="height: 4cm">Consultant</td>
-                <td>{{ model.consultant_full }}</td>
+                <td>{{ model.drname_en('consultant') }}</td>
                 <td>{{ model.consultant_grade }}</td>
                 <td>{{ model.consultant_specialty }}</td>
                 <td>{{ model.consultant_work_place }}</td>
@@ -174,8 +174,9 @@
 </template>
 
 <script>
+
 export default {
-    name: "Form1",
+    name: "Form10",
     props: {
         model: Object
     }

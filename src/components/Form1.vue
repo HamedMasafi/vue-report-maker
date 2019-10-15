@@ -41,11 +41,11 @@
                         {{model.field}} 
                         {{model.university}}
                         ورودی نیم‌سال 
-                        {{model.entrance_part}}
+                        {{ model.fa_number( "entrance_part") }}
                          سال‌تحصیلی 
-                        {{model.entrance_year}}
+                        {{  model.fa_number("entrance_year") }}
                          به شماره دانشجویی 
-                        {{model.student_number}}
+                        {{ model.fa_number("student_number") }}
                          تمایل دارم  پایان‌نامه‌ی کارشناسی‌ ارشد خود را تحت نظارت و راهنمایی جنابعالی به انجام برسانم. در ضمن اعلام می‌دارم که چنین فرمی را به امضای اساتید دیگری نرسانده‌ام. خواهشمند است در صورت موافقت، مراتب را به مدیر محترم گروه اعلام فرمایید.
                 </td>
             </tr>

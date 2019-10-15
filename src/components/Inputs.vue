@@ -2,11 +2,11 @@
 <div id="editor" class="d-print-none">
   <b-tabs content-class="mt-3">
     <b-tab title="صفحه اصلی">
-      <h1>فرم‌ساز</h1>
+      <Info />      
     </b-tab>
-    <b-tab v-for="group in groups" :title="group.title">
+    <b-tab v-for="group in groups" :title="group.title" :key="group.name">
       <h1>{{ group.title }}</h1>
-      <b-form-group v-for="field in group.fields" :label="field.title">
+      <b-form-group v-for="field in group.fields" :label="field.title" :key="field.name">
 
           <b-form-select v-model="model[field.name + '_sex']" 
                 :options="[{text:'آقا',value:'male'},{text:'خانم',value:'female'}]" 
@@ -22,18 +22,27 @@
 </template>
 
 <script>
+import Info from "./Info.vue";
 export default {
     name: "Inputs",
     props: {
         groups: Array,
         model: Object
-    }
+    },
+    components: {Info}
 }
 </script>
 
 <style scoped>
   #editor {
-    margin: 20px;
+    background-color: white;
     padding: 20px;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    z-index: 9999;
+     */
   }
 </style>

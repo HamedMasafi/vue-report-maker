@@ -1,8 +1,11 @@
 <template>
   <div id="app">
+    <a class="github-fork-ribbon left-top" href="https://github.com/HamedMasafi/vue-report-maker" 
+        data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+
     <Inputs :groups="groups" :model="model" />
 
-    <div class="d-print-none">
+    <div class="d-print-none buttons">
         <input type="file" style="display:none" id="openfile" />
         <b-button variant="primary" @click="print()"><font-awesome-icon icon="print" />چاپ</b-button>
         <b-button variant="outline-primary" @click="save()"><font-awesome-icon icon="save" />ذخیره</b-button>
@@ -15,10 +18,6 @@
     <Grade :model="model" dr="supervisor" />
     <Grade :model="model" dr="arbiter" />
     <Grade :model="model" dr="consultant" />
-
-    <div style="direction:ltr">
-    {{model}}
-    </div>
   </div>
 </template>
 
@@ -34,7 +33,6 @@ import { Settings, model } from './settings'
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 
-// import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/style.css'
 
@@ -50,7 +48,6 @@ export default {
   name: 'app',
   data(){
       return{
-        pages: ['a','b','c','d'],
         groups: groups,
         props: props,
         forms: forms,
@@ -85,7 +82,9 @@ settings.load();
 <style>
 @import 'http://cdn.font-store.ir/nazanin.css';
 @import 'https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css';
-@import 'assets/style.css'
+@import 'assets/style.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css';
+
 </style>
 <style>
 #app {
