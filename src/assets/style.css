@@ -24,6 +24,12 @@ h2 {
     margin: 0;
 }
 
+@media screen {
+    section.page {
+        /* display: none; */
+    }
+}
+
 section.page {
     padding: 2cm;
     page-break-after: always;
@@ -87,3 +93,7 @@ tr.header-row {
     }
 }
 
+
+fieldset select{
+    width: auto!important;
+}

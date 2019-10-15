@@ -23,7 +23,7 @@ export const groups = [
             type: "text",
             group: "student"
         }, {
-            name: "studentـnumber",
+            name: "student_number",
             title: "شماره دانشجویی",
             tr: false,
             type: "number",
@@ -158,3 +158,6 @@ export const forms = [
         name: "proceedings"
     }
 ]
+
+
+
