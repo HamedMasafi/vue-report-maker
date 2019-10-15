@@ -1,15 +1,19 @@
 export var model = {
     university: 'موسسه غیر انتفاعی آموزش عالی شهریار آستارا',
-    full_name_p(name, dr, pf, lang){
+    full_name_p(name, prefix, pf, lang){
       var ret = "";
         var sex = this[name + "_sex"];
         if (sex === "female")
-          ret = (pf ? "سرکار " : "") + "خانم ";
+          ret = lang == 'en'
+                ? 'Ms.'
+                : (pf ? "سرکار " : "") + "خانم ";
         else if (sex === "male")
-          ret = (pf ? "جناب " : "") + "آقای ";
+          ret = lang == 'en'
+                ? 'Mr.'
+                : (pf ? "جناب " : "") + "آقای ";
         
-        if (dr)
-          ret += "دکتر "
+        if (prefix != undefined)
+          ret += prefix + ' ';
 
         if (lang == 'en')
             ret += this[name + '_en'];
@@ -17,10 +21,12 @@ export var model = {
             ret += this[name];
         return ret;
     },
-    myname(){return this.full_name_p('name', false, false, '')},
-    myname_en(){return this.full_name_p('name', false, false, 'en')},
-    drname(name){return this.full_name_p(name, true, true, '')},
-    drname_en(name){return this.full_name_p(name, true, true, 'en')},
+    full_name(name){return this.full_name_p(name, '', true, '')},
+    full_name_en(name){return this.full_name_p(name, '', true, 'en')},
+    myname(){return this.full_name_p('name', '', false, '')},
+    myname_en(){return this.full_name_p('name', '', false, 'en')},
+    drname(name){return this.full_name_p(name, 'دکتر', true, '')},
+    drname_en(name){return this.full_name_p(name, 'Dr.', true, 'en')},
     fa_number(name) {
         if (this[name] == undefined)
             return "";
@@ -40,7 +46,8 @@ export var model = {
 export function Settings() {
     this.input = document.createElement("input");
     this.input.type = 'file';
-    
+    this.input.accept = "*.json";
+
     var __reload = function(o){
         for (var k in o) {
             model[k] = o[k];
@@ -81,10 +88,8 @@ Settings.prototype.to_file = function() {
 }
 Settings.prototype.save = function(){
     localStorage.data = JSON.stringify(model)
-    console.log("saved", JSON.stringify(model))
 }
 Settings.prototype.load = function() {
     var data = JSON.parse(localStorage.data || "[]");
     this.__reload(data)
-    console.log("loaded", JSON.stringify(model))
 }

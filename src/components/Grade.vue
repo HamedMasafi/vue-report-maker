@@ -2,24 +2,24 @@
     <section class="page">
         <h1>فرم ارزشیابی پایان نامه کارشناسی ارشد</h1>
         همکار محترم 
-        {{ model.drname(dr) }}
+        <strong>{{ model.drname(dr) }}</strong>
         عضو هیات داوران جلسه دفاعیه پایان نامه کارشناسی ارشد 
-        {{ model.name_full }}
+        <strong>{{ model.myname() }}</strong>
         دانشجوی رشته 
-        {{ model.field }}
+        <strong>{{ model.field }}</strong>
         گرایش
-        {{ model.orientation }}
+        <strong>{{ model.orientation }}</strong>
         با عنوان
-        {{ model.title }}
+        <strong>{{ model.title }}</strong>
         نظرات خود را اعلام فرمایید.
         <h1>مهر و امضای مدیر تحصیلات تکمیلی موسسه</h1>
 
         <table class="lines">
             <tr>
-                <td>عنوان</td>
-                <td>حداکثر نمره</td>
-                <td>نمره پیشنهادی</td>
-                <td>ملاحظات</td>
+                <th>عنوان</th>
+                <th>حداکثر نمره</th>
+                <th>نمره پیشنهادی</th>
+                <th>ملاحظات</th>
             </tr>
             <tr>
                 <td>
@@ -106,15 +106,15 @@
 
         <table class="lines">
             <tr>
-                <td>
+                <th>
                     نوع مقاله
-                </td>
-                <td>
+                </th>
+                <th>
                     امتياز بازاي هر مقاله
-                </td>
-                <td>
+                </th>
+                <th>
                     امتياز قابل محاسبه
-                </td>
+                </th>
             </tr>
             <tr>
                 <td>

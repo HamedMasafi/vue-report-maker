@@ -1,18 +1,19 @@
 <template>
   <div id="app">
-    <a class="github-fork-ribbon left-top" href="https://github.com/HamedMasafi/vue-report-maker" 
+    <a class="d-print-none github-fork-ribbon left-top" href="https://github.com/HamedMasafi/vue-report-maker" 
         data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
     <Inputs :groups="groups" :model="model" />
 
     <div class="d-print-none buttons">
         <input type="file" style="display:none" id="openfile" />
-        <b-button variant="primary" @click="print()"><font-awesome-icon icon="print" />چاپ</b-button>
-        <b-button variant="outline-primary" @click="save()"><font-awesome-icon icon="save" />ذخیره</b-button>
-        <b-button variant="outline-primary" @click="open()"><font-awesome-icon icon="folder-open" />گشودن</b-button>
+        <b-button pill variant="primary" @click="print()"><font-awesome-icon icon="print" />چاپ</b-button>
+        <b-button pill variant="outline-primary" @click="save()"><font-awesome-icon icon="save" />ذخیره</b-button>
+        <b-button pill variant="outline-primary" @click="open()"><font-awesome-icon icon="folder-open" />گشودن</b-button>
     </div>
 
-    <Form1 :model="model" />
+    <Form12 :model="model" />
+    <!-- <Form1 :model="model" /> -->
     <Form10 :model="model" />
     <DefenseLicense :model="model" />
     <Grade :model="model" dr="supervisor" />
@@ -27,8 +28,9 @@ import Form1 from './components/Form1.vue'
 import Form10 from './components/Form10.vue'
 import DefenseLicense from './components/DefenseLicense'
 import Grade from './components/Grade'
+import Form12 from './components/Form12'
 
-import { groups, props, forms } from './data'
+import { groups, props, forms, components_info } from './data'
 import { Settings, model } from './settings'
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
@@ -38,12 +40,6 @@ import './assets/style.css'
 
 var settings = new Settings();
 
-for (var g in groups) {
-  for (var f in g.fields) {
-      model[f.name] = "«" + f.title + " وارد نشده است»";
-  }
-}
-
 export default {
   name: 'app',
   data(){
@@ -51,7 +47,8 @@ export default {
         groups: groups,
         props: props,
         forms: forms,
-        model: model
+        model: model,
+        components_info: components_info
       }
   },
   methods: {
@@ -67,10 +64,18 @@ export default {
     }
   },
   components: {
-    Inputs, Form1, Form10,
-    DefenseLicense: () => import('./components/DefenseLicense'),
+    Inputs
+    , Form1, Form10,
+    DefenseLicense,
+    Form12,    
     Grade
-  }
+  },
+  // created(){
+  //   this.components_info.forEach(function(ci){
+  //     console.log("loading", ci);
+  //     view.component(ci, () => import('./components/' + ci));
+  //   })
+  // }
 }
 
 Vue.use(BootstrapVue)
@@ -97,5 +102,8 @@ settings.load();
 .btn svg {
     vertical-align: middle;
     margin-left: 5px;
+}
+.btn {
+  margin: 10px;
 }
 </style>

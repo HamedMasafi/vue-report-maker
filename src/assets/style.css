@@ -4,7 +4,7 @@ h1, .h1 {
     font-weight: bold;
     font-size: 12pt;
 }
-h2 {
+h2, .h2 {
     font-weight: bold;
     font-size: 12pt;
 }
@@ -27,6 +27,7 @@ h2 {
 @media screen {
     section.page {
         /* display: none; */
+        border-bottom: 1px dashed gray;
     }
 }
 
@@ -97,3 +98,38 @@ tr.header-row {
 fieldset select{
     width: auto!important;
 }
+/* 
+#editor{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 40px;
+    background-color: white;
+    z-index: 999;
+}
+.buttons {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: white;
+}
+.tab-content > div {
+    overflow: scroll;
+} */
+
+span.mark {
+    transform: rotateZ(90deg);
+    position: absolute;
+    left: 1.1cm;
+    bottom: 4cm;
+    background: transparent;
+    font-size: 7pt;
+}
+
+table.sec-3 td { width: 33% }
+table.sec-4 td { width: 25% }
+table.sec-2 td { width: 50% }
+table.sec-5 td { width: 20% }

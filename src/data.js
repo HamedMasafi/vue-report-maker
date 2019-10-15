@@ -132,6 +132,22 @@ export const groups = [
             tr: true,
             group: "consultant"
         }]
+    }, {
+        name: "agent",
+        title: "نماینده تحصیلات تکمیلی",
+        fields: [{
+            name: "agent",
+            title: "نام و نام خانوادگی",
+            tr: true
+        }, {
+            name: "agent_grade",
+            title: "مرتبه دانشگاهی",
+            tr: true
+        }, {
+            name: "agent_group",
+            title: "گروه آموزشی/پژوهش",
+            tr: true
+        }]
     }
 ]
 export const props = [
@@ -161,3 +177,8 @@ export const forms = [
 
 
 
+export const components_info = [
+    "Inputs", "Form1", "Form10",
+    "DefenseLicense",
+    "Grade"
+]

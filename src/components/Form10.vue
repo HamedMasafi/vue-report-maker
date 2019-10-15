@@ -32,7 +32,7 @@
                     class="sq" />، خوب<span class="sq" />، متوسط<span class="sq" /> مورد تأييد قرار گرفت.
             </li>
             <li>
-                <span class="sq" /> پايان‌نامه در وضع فعلي با اصلاحات جزيي و نمرة ............. و امتياز عالي<span
+                <span class="sq" /> پايان‌نامه در وضع فعلي با اصلاحات جزئی و نمره ............. و امتياز عالي<span
                     class="sq" />، خیلی خوب<span class="sq" />، خوب<span class="sq" />، متوسط<span class="sq" /> پذیرفته
                 شد.
             </li>
@@ -86,9 +86,9 @@
                 <td>امضا</td>
             </tr>
             <tr>
-                <td style="height: 4cm"></td>
-                <td></td>
-                <td></td>
+                <td style="height: 4cm">{{ model.full_name('agent') }}</td>
+                <td>{{ model.agent_grade }}</td>
+                <td>{{ model.agent_group }}</td>
                 <td></td>
             </tr>
         </table>
@@ -163,9 +163,9 @@
                 <td>Signature</td>
             </tr>
             <tr>
-                <td style="height: 4cm"></td>
-                <td></td>
-                <td></td>
+                <td style="height: 4cm">{{ model.full_name_en('agent') }}</td>
+                <td>{{ model.agent_grade_en }}</td>
+                <td>{{ model.agent_group_en }}</td>
                 <td></td>
             </tr>
         </table>
