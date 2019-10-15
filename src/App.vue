@@ -10,6 +10,7 @@
     </div>
 
     <Form1 :model="model" />
+    <Form10 :model="model" />
     <DefenseLicense :model="model" />
     <Grade :model="model" dr="supervisor" />
     <Grade :model="model" dr="arbiter" />
@@ -24,6 +25,7 @@
 <script>
 import Inputs from './components/Inputs.vue'
 import Form1 from './components/Form1.vue'
+import Form10 from './components/Form10.vue'
 import DefenseLicense from './components/DefenseLicense'
 import Grade from './components/Grade'
 
@@ -37,6 +39,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/style.css'
 
 var settings = new Settings();
+
+for (var g in groups) {
+  for (var f in g.fields) {
+      model[f.name] = "«" + f.title + " وارد نشده است»";
+  }
+}
 
 export default {
   name: 'app',
@@ -62,7 +70,7 @@ export default {
     }
   },
   components: {
-    Inputs, Form1,
+    Inputs, Form1, Form10,
     DefenseLicense: () => import('./components/DefenseLicense'),
     Grade
   }

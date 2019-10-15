@@ -1,6 +1,6 @@
 export var model = {
     university: 'موسسه غیر انتفاعی آموزش عالی شهریار آستارا',
-    full_name_p(name, dr, pf){
+    full_name_p(name, dr, pf, lang){
       var ret = "";
         var sex = this[name + "_sex"];
         if (sex === "female")
@@ -10,11 +10,16 @@ export var model = {
         
         if (dr)
           ret += "دکتر "
-        ret += this[name];
+
+        if (lang == 'en')
+            ret += this[name + '_en'];
+        else
+            ret += this[name];
         return ret;
     },
-    myname(){return this.full_name_p('name', false, false)},
-    drname(name){return this.full_name_p(name, true, true)}
+    myname(){return this.full_name_p('name', false, false, '')},
+    myname_en(){return this.full_name_p('name', false, false, 'en')},
+    drname(name){return this.full_name_p(name, true, true, '')}
 };
 export function Settings() {
     this.input = document.createElement("input");
