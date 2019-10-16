@@ -138,7 +138,8 @@ export const groups = [
         fields: [{
             name: "agent",
             title: "نام و نام خانوادگی",
-            tr: true
+            tr: true,
+            type: "person"
         }, {
             name: "agent_grade",
             title: "مرتبه دانشگاهی",
@@ -178,7 +179,7 @@ export const forms = [
 
 
 export const components_info = [
-    "Inputs", "Form1", "Form10",
+    "Form1", "Form10", "Form12",
     "DefenseLicense",
     "Grade"
 ]

@@ -1,50 +1,134 @@
 <template>
-   <v-app id="app">
-      <v-content class="d-print-none">
-        <v-tabs v-model="tab">
-          <v-tab>صفحه اصلی</v-tab>
-          <v-tab v-for="group in groups" :key="group.name">{{group.title}}</v-tab>
-        </v-tabs>
-        <v-tabs-items v-model="tab">
-          <v-tab-item>
-            <v-card flat color="basil">
-              <Info />
-            </v-card>
-          </v-tab-item>
-          <v-tab-item
-              v-for="group in groups"
-              :key="group.name">
-            <v-card flat color="basil">
-              <v-card-text>{{ group.title }}</v-card-text>
+  <v-app id="app">
+    <v-navigation-drawer class="d-print-none"
+        v-model="drawer"
+        app right>
+      <v-list subheader dense>
+        <v-subheader inset>صفحات</v-subheader>
 
-              <h1>{{ group.title }}</h1>
-              <b-form-group v-for="field in group.fields" :label="field.title" :key="field.name">
+        <v-list-item @click="tab = index + 1" v-for="(group, index) in groups" :key="group.name">
+          <v-list-item-icon>
+            <v-icon>mdi-page-next-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>{{group.title}}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        
+        <v-divider inset></v-divider>
+        <v-subheader inset>بیشتر</v-subheader>
 
-                <b-form-select v-model="model[field.name + '_sex']" 
-                        :options="[{text:'آقا',value:'male'},{text:'خانم',value:'female'}]" 
-                        v-if="field.type === 'person'" ></b-form-select>
-                <b-form-input :placeholder="field.title + ' فارسی'" v-model="model[field.name]" 
-                    :type="field.type === 'number' ? 'number' : 'text'"></b-form-input>
-                <b-form-input v-model="model[field.name + '_en']" :placeholder="field.title + ' انگلیسی'" v-if="field.tr"></b-form-input>
-              </b-form-group>
-                
-            </v-card>
-          </v-tab-item>
-        </v-tabs-items> 
-      </v-content>
+        <v-list-item @click="print">
+            <v-list-item-icon>
+            <v-icon>mdi-printer</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>چاپ</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-  <v-layout column class="d-print-none fab-container">
-      <v-btn color="blue" dark fab @click="print">
-          <v-icon>mdi-printer</v-icon>
-      </v-btn>
+        <v-list-item @click="save">
+            <v-list-item-icon>
+            <v-icon>mdi-share-variant</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>ذخیره</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item @click="open">
+            <v-list-item-icon>
+            <v-icon>mdi-cloud-upload</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>گشودن</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item @click="open">
+            <v-list-item-icon>
+            <v-icon>mdi-github-circle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>دریافت سورس</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+      </v-list>
+    </v-navigation-drawer> 
+     
+    <v-app-bar
+        class="d-print-none"
+        color="deep-purple accent-4"
+        dark
+        flat app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>فرم‌ساز {{tab > 0 ? ' - ' + groups[tab - 1].title : ''}}</v-toolbar-title>
+
+    <template v-slot:extension v-if="!drawer">
+
+      <v-tabs v-model="tab">
+        <v-tab>صفحه اصلی</v-tab>
+        <v-tab v-for="group in groups" :key="group.name">{{group.title}}</v-tab>
+      </v-tabs>
+    </template>
+  </v-app-bar>
+  
+  <v-content class="d-print-none">
+    <v-tabs-items v-model="tab">
+      <v-tab-item>
+        <v-card flat color="basil">
+          <Info />
+        </v-card>
+      </v-tab-item>
+      <v-form lazy-validation>
+        <v-tab-item
+            v-for="group in groups"
+            :key="group.name">
+          <v-card flat color="basil">
+            <v-row v-for="field in group.fields" :key="field.name">
+              <v-col cols="2" v-if="field.type === 'person'">
+                <v-select 
+                    v-model="model[field.name + '_sex']" 
+                    label="جنسیت" 
+                    :items="[{text:'آقا',value:'male'},{text:'خانم',value:'female'}]" >
+                </v-select>
+              </v-col>
+              <v-col cols="5"> 
+                <v-text-field 
+                    v-model="model[field.name]" 
+                    :label="field.title + ' به فارسی'" 
+                    required>
+                </v-text-field>
+              </v-col>
+              <v-col cols="5">
+                <v-text-field 
+                    v-model="model[field.name + '_en']" 
+                    :label="field.title + ' به انگلیسی'" 
+                    required 
+                    v-if="field.tr">
+                </v-text-field>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-tab-item>
+      </v-form>
+    </v-tabs-items> 
+      
+    <v-btn color="blue" bottom
+              fixed left dark fab @click="print" >
+        <v-icon>mdi-printer</v-icon>
+    </v-btn>
+  </v-content>
+  <!-- <v-layout column class="d-print-none fab-container">
       <v-btn color="pink" dark fab @click="save">
           <v-icon>mdi-share-variant</v-icon>
       </v-btn>
       <v-btn color="pink" dark fab @click="open">
           <v-icon>mdi-cloud-upload</v-icon>
       </v-btn>
-  </v-layout>
-    <a class="d-print-none github-fork-ribbon left-top" href="https://github.com/HamedMasafi/vue-report-maker" 
+  </v-layout> -->
+    <a class="d-print-none github-fork-ribbon left-top fixed" href="https://github.com/HamedMasafi/vue-report-maker" 
         data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
     <!-- <MainUI :groups="groups" /> -->
@@ -70,11 +154,11 @@
 
 <script>
 import Inputs from './components/Inputs.vue'
-import Form1 from './components/Form1.vue'
-import Form10 from './components/Form10.vue'
-import DefenseLicense from './components/DefenseLicense'
-import Grade from './components/Grade'
-import Form12 from './components/Form12'
+// import Form1 from './components/Form1.vue'
+// import Form10 from './components/Form10.vue'
+// import DefenseLicense from './components/DefenseLicense'
+// import Grade from './components/Grade'
+// import Form12 from './components/Form12'
 import MainUI from './components/MainUI'
 import Info from './components/Info'
 
@@ -93,6 +177,7 @@ export default {
   data(){
       return{
         tab: null,
+        drawer: false,
         groups: groups,
         props: props,
         forms: forms,
@@ -113,18 +198,18 @@ export default {
     }
   },
   components: {
-    Inputs, MainUI,
-    Form1, Form10,
-    DefenseLicense,
-    Form12,    
-    Grade, Info
+    Inputs, Info,
+    // Form1, Form10,
+    // DefenseLicense,
+    // Form12,    
+    // Grade, Info
   },
-  // created(){
-  //   this.components_info.forEach(function(ci){
-  //     console.log("loading", ci);
-  //     view.component(ci, () => import('./components/' + ci));
-  //   })
-  // }
+  created(){
+    this.components_info.forEach(function(ci){
+      console.log("loading", ci);
+      Vue.component(ci, () => import('./components/' + ci));
+    })
+  }
 }
 
 Vue.use(BootstrapVue)
@@ -147,15 +232,17 @@ settings.load();
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  /* margin-left: 10px; */
+  /* margin-right: 10px; */
 }
 .btn svg {
     vertical-align: middle;
     margin-left: 5px;
 }
-.btn {
+/* .btn {
   margin: 10px;
-}
-.fab-container {
+} */
+/* .fab-container {
     position: fixed;
     bottom: 10px;
     left: 10px;
@@ -163,5 +250,6 @@ settings.load();
 
 .fab-container button{
   margin-top: 8px;
-}
+} */
+
 </style>
