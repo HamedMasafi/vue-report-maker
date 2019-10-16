@@ -251,5 +251,7 @@ settings.load();
 .fab-container button{
   margin-top: 8px;
 } */
-
+.v-window-item{
+  margin: 10px;
+}
 </style>
