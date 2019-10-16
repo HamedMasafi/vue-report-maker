@@ -165,9 +165,9 @@ import Info from './components/Info'
 import { groups, props, forms, components_info } from './data'
 import { Settings, model } from './settings'
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
+// import BootstrapVue from 'bootstrap-vue'
 
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/style.css'
 
 var settings = new Settings();
@@ -212,7 +212,7 @@ export default {
   }
 }
 
-Vue.use(BootstrapVue)
+// Vue.use(BootstrapVue)
 
 settings.load();
 
@@ -220,7 +220,7 @@ settings.load();
 
 <style>
 @import 'http://cdn.font-store.ir/nazanin.css';
-@import 'https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css';
+/* @import 'https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css'; */
 @import 'assets/style.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css';
 
