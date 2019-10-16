@@ -98,8 +98,8 @@ tr.header-row {
 fieldset select{
     width: auto!important;
 }
-/* 
-#editor{
+
+/* #editor{
     position: fixed;
     left: 0;
     right: 0;
@@ -118,7 +118,7 @@ fieldset select{
 }
 .tab-content > div {
     overflow: scroll;
-} */
+}  */
 
 span.mark {
     transform: rotateZ(90deg);
