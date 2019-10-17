@@ -219,7 +219,12 @@ export default {
     name: "Grade",
     props: {
         model: Object,
-        dr: String
+        dr: String,
     }
+        // args: Array
+    // },
+    // computed: {
+    //     ddr: args[0]
+    // }
 }
 </script>

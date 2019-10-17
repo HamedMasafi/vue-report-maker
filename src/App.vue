@@ -63,13 +63,14 @@
         dark
         flat app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>فرم‌ساز {{tab > 0 ? ' - ' + groups[tab - 1].title : ''}}</v-toolbar-title>
+      <v-toolbar-title>فرم‌ساز {{(tab > 0 /*&& tab < groups.length + 1*/) ? ' - ' + groups[tab - 1].title : ''}}</v-toolbar-title>
 
     <template v-slot:extension v-if="!drawer">
 
       <v-tabs v-model="tab">
         <v-tab>صفحه اصلی</v-tab>
         <v-tab v-for="group in groups" :key="group.name">{{group.title}}</v-tab>
+        <!-- <v-tab>فرم‌ها</v-tab> -->
       </v-tabs>
     </template>
   </v-app-bar>
@@ -87,21 +88,21 @@
             :key="group.name">
           <v-card flat color="basil">
             <v-row v-for="field in group.fields" :key="field.name">
-              <v-col cols="2" v-if="field.type === 'person'">
+              <v-col md="2" sm="12" xs="12" v-if="field.type === 'person'">
                 <v-select 
                     v-model="model[field.name + '_sex']" 
                     label="جنسیت" 
                     :items="[{text:'آقا',value:'male'},{text:'خانم',value:'female'}]" >
                 </v-select>
               </v-col>
-              <v-col cols="5"> 
+              <v-col md="5" sm="12" xs="12"> 
                 <v-text-field 
                     v-model="model[field.name]" 
                     :label="field.title + ' به فارسی'" 
                     required>
                 </v-text-field>
               </v-col>
-              <v-col cols="5">
+              <v-col md="5" sm="12" xs="12">
                 <v-text-field 
                     v-model="model[field.name + '_en']" 
                     :label="field.title + ' به انگلیسی'" 
@@ -113,6 +114,9 @@
           </v-card>
         </v-tab-item>
       </v-form>
+      <!-- <v-tab-item>
+          <v-checkbox v-for="component in components_info" :key="component"  :label="component" value="true"/>
+      </v-tab-item> -->
     </v-tabs-items> 
       
     <v-btn color="blue" bottom
@@ -120,26 +124,10 @@
         <v-icon>mdi-printer</v-icon>
     </v-btn>
   </v-content>
-  <!-- <v-layout column class="d-print-none fab-container">
-      <v-btn color="pink" dark fab @click="save">
-          <v-icon>mdi-share-variant</v-icon>
-      </v-btn>
-      <v-btn color="pink" dark fab @click="open">
-          <v-icon>mdi-cloud-upload</v-icon>
-      </v-btn>
-  </v-layout> -->
+
     <a class="d-print-none github-fork-ribbon left-top fixed" href="https://github.com/HamedMasafi/vue-report-maker" 
         data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
-    <!-- <MainUI :groups="groups" /> -->
-    <!-- <Inputs :groups="groups" :model="model" /> -->
-
-    <!-- <div class="d-print-none buttons">
-        <input type="file" style="display:none" id="openfile" />
-        <b-button pill variant="primary" @click="print()"><font-awesome-icon icon="print" />چاپ</b-button>
-        <b-button pill variant="outline-primary" @click="save()"><font-awesome-icon icon="save" />ذخیره</b-button>
-        <b-button pill variant="outline-primary" @click="open()"><font-awesome-icon icon="folder-open" />گشودن</b-button>
-    </div> -->
     <div class="d-none d-print-block">
       <Form12 :model="model" />
       <Form1 :model="model" />
