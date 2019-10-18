@@ -74,3 +74,26 @@ span.mark {
 table.sec-3, table.sec-4, table.sec-2, table.sec-5 { 
     table-layout: fixed;
 }
+
+section.page {
+    padding: 2cm;
+    page-break-before: always;
+    height: 100%;
+    position: relative;
+    font-size: 12px;
+}
+section.page footer{
+    /* position: absolute; */
+    bottom: 2cm;
+}
+div.stamp-place{
+    padding-left: 4cm;
+}
+
+section.page p {
+    margin-bottom: 1mm;
+}
+
+img.logo {
+    width: 3cm;
+}

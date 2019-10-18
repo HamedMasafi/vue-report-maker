@@ -21,18 +21,6 @@
     }
     section.page {
         display: block;
-        padding: 2cm;
-        page-break-before: always;
-        height: 100%;
-        position: relative;
-        font-size: 12px;
     }
-    section.page footer{
-        /* position: absolute; */
-        bottom: 2cm;
-    }
-    div.stamp-place{
-        padding-left: 4cm;
-    }
-       
+      
 }

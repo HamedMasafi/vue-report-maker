@@ -3,7 +3,7 @@
         <table class="lines">
             <tr>
                 <td rowspan="3" width="22">
-                    <img src="logo.jpg" />
+                    <img src="@/assets/logo.jpg" class="logo"/>
                 </td>
                 <td>
                         بسمه تعالی

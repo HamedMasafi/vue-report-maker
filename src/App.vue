@@ -6,7 +6,7 @@
       <v-list subheader dense>
         <v-subheader inset>صفحات</v-subheader>
 
-          <v-list-item @click="tab = 0">
+        <v-list-item @click="tab = 0">
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
@@ -24,6 +24,15 @@
           </v-list-item-content>
         </v-list-item>
         
+        <v-list-item @click="tab = groups.length + 1" v-if="show_forms">
+          <v-list-item-icon>
+            <v-icon>mdi-checkbox-multiple-marked-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>انتخاب فرم‌ها</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-divider inset></v-divider>
         <v-subheader inset>بیشتر</v-subheader>
 
@@ -72,7 +81,8 @@
         dark
         flat app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>فرم‌ساز {{(tab > 0 /*&& tab < groups.length + 1*/) ? ' - ' + groups[tab - 1].title : ''}}</v-toolbar-title>
+      <v-toolbar-title v-if="show_forms">فرم‌ساز {{(tab > 0 && tab < groups.length + 1) ? ' - ' + groups[tab - 1].title : ''}}</v-toolbar-title>
+      <v-toolbar-title v-if="!show_forms">فرم‌ساز {{tab > 0 ? ' - ' + groups[tab - 1].title : ''}}</v-toolbar-title>
 
     <!-- <template v-slot:extension v-if="!drawer">
 
@@ -123,9 +133,9 @@
           </v-card>
         </v-tab-item>
       </v-form>
-      <!-- <v-tab-item>
+      <v-tab-item v-if="show_forms">
           <v-checkbox v-for="component in components_info" :key="component"  :label="component" value="true"/>
-      </v-tab-item> -->
+      </v-tab-item>
     </v-tabs-items> 
       
     <v-btn color="blue" bottom
@@ -150,24 +160,16 @@
 </template>
 
 <script>
-import Inputs from './components/Inputs.vue'
-// import Form1 from './components/Form1.vue'
-// import Form10 from './components/Form10.vue'
-// import DefenseLicense from './components/DefenseLicense'
-// import Grade from './components/Grade'
-// import Form12 from './components/Form12'
-import MainUI from './components/MainUI'
 import Info from './components/Info'
 
 import { groups, props, forms, components_info } from './data'
 import { Settings, model } from './settings'
 import Vue from 'vue'
-// import BootstrapVue from 'bootstrap-vue'
 
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/style.css'
 import './assets/print.css'
 import './assets/screen.css'
+// import './assets/debug.css'
 
 var settings = new Settings();
 
@@ -178,6 +180,7 @@ export default {
         tab: 0,
         drawer: null,
         groups: groups,
+        show_forms: true,
         props: props,
         forms: forms,
         model: model,
@@ -197,11 +200,7 @@ export default {
     }
   },
   components: {
-    Inputs, Info,
-    // Form1, Form10,
-    // DefenseLicense,
-    // Form12,    
-    // Grade, Info
+    Info
   },
   created(){
     this.components_info.forEach(function(ci){
