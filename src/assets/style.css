@@ -1,3 +1,8 @@
+html, body {
+    font-size: 12px;
+    height: 100%;
+}
+
 h1, .h1 {
     display: block;
     text-align: center;
@@ -9,45 +14,13 @@ h2, .h2 {
     font-size: 12pt;
 }
 
-@page { 
-    @top-left-corner{content: " "; border: solid green;}
-    @top-left{content:"";}
-    @top-center {content: counter(page);}
-    @top-right {content:"";}
-    @top-right-corner {content:"";}
-    @bottom-left-corner {content:"";}
-    @bottom-left {content: "Page " counter(page);}
-    @bottom-center {display: none}
-    @bottom-right {display:none}
-    @bottom-right-corner {display: none}
-    size: auto;
-    margin: 0;
-}
-
-@media screen {
-    section.page {
-        /* display: none; */
-        border-bottom: 1px dashed gray;
-    }
-}
-
-section.page {
-    padding: 2cm;
-    page-break-after: always;
-    height: 100%;
-    position: relative;
-}
-section.page footer{
-    position: absolute;
-    bottom: 2cm;
-}
-
 table{
     width: 100%;
+    border-collapse: collapse;
 }
 table.lines td, table.lines th{
     border: 1px solid black;
-    padding: .3cm;
+    padding: .1cm;
 }
 
 .sq {
@@ -75,9 +48,6 @@ div.frame {
     border: 1px solid black;
     padding: .2cm;
 }
-div.stamp-place{
-    padding-left: 4cm;
-}
 
 .btn i {
     vertical-align: middle;
@@ -88,37 +58,9 @@ tr.header-row {
     background-color: lightgray!important;
 }
 
-@media print {
-    body {
-        -webkit-print-color-adjust: exact; 
-    }
-}
-
-
 fieldset select{
     width: auto!important;
 }
-
-/* #editor{
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 40px;
-    background-color: white;
-    z-index: 999;
-}
-.buttons {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 999;
-    background-color: white;
-}
-.tab-content > div {
-    overflow: scroll;
-}  */
 
 span.mark {
     transform: rotateZ(90deg);
@@ -129,7 +71,6 @@ span.mark {
     font-size: 7pt;
 }
 
-table.sec-3 td { width: 33% }
-table.sec-4 td { width: 25% }
-table.sec-2 td { width: 50% }
-table.sec-5 td { width: 20% }
+table.sec-3, table.sec-4, table.sec-2, table.sec-5 { 
+    table-layout: fixed;
+}

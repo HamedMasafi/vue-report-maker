@@ -50,10 +50,10 @@
                 <td>مرتبه دانشگاهی</td>
                 <td>تخصص</td>
                 <td>محل کار</td>
-                <td style="width: 4cm">امضا</td>
+                <td style="width: 2cm">امضا</td>
             </tr>
             <tr>
-                <td style="height: 4cm">استاد راهنما</td>
+                <td style="height: 2cm">استاد راهنما</td>
                 <td>{{ model.drname('supervisor') }}</td>
                 <td>{{ model.supervisor_grade }}</td>
                 <td>{{ model.supervisor_specialty }}</td>
@@ -61,7 +61,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td style="height: 4cm">استاد داور</td>
+                <td style="height: 2cm">استاد داور</td>
                 <td>{{ model.drname('arbiter') }}</td>
                 <td>{{ model.arbiter_grade }}</td>
                 <td>{{ model.arbiter_specialty }}</td>
@@ -69,7 +69,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td style="height: 4cm">استاد مشاور</td>
+                <td style="height: 2cm">استاد مشاور</td>
                 <td>{{ model.drname('consultant') }}</td>
                 <td>{{ model.consultant_grade }}</td>
                 <td>{{ model.consultant_specialty }}</td>
@@ -86,7 +86,7 @@
                 <td>امضا</td>
             </tr>
             <tr>
-                <td style="height: 4cm">{{ model.full_name('agent') }}</td>
+                <td style="height: 2cm">{{ model.full_name('agent') }}</td>
                 <td>{{ model.agent_grade }}</td>
                 <td>{{ model.agent_group }}</td>
                 <td></td>
@@ -127,10 +127,10 @@
                 <td>Rank</td>
                 <td>Specialization</td>
                 <td>Affiliation</td>
-                <td style="width: 4cm">Signature</td>
+                <td style="width: 2cm">Signature</td>
             </tr>
             <tr>
-                <td style="height: 4cm">Supervisor</td>
+                <td style="height: 2cm">Supervisor</td>
                 <td>{{ model.drname_en('supervisor') }}</td>
                 <td>{{ model.supervisor_grade }}</td>
                 <td>{{ model.supervisor_specialty }}</td>
@@ -138,7 +138,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td style="height: 4cm">Arbiter</td>
+                <td style="height: 2cm">Arbiter</td>
                 <td>{{ model.drname_en('arbiter') }}</td>
                 <td>{{ model.arbiter_grade }}</td>
                 <td>{{ model.arbiter_specialty }}</td>
@@ -146,7 +146,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td style="height: 4cm">Consultant</td>
+                <td style="height: 2cm">Consultant</td>
                 <td>{{ model.drname_en('consultant') }}</td>
                 <td>{{ model.consultant_grade }}</td>
                 <td>{{ model.consultant_specialty }}</td>
@@ -163,7 +163,7 @@
                 <td>Signature</td>
             </tr>
             <tr>
-                <td style="height: 4cm">{{ model.full_name_en('agent') }}</td>
+                <td style="height: 2cm">{{ model.full_name_en('agent') }}</td>
                 <td>{{ model.agent_grade_en }}</td>
                 <td>{{ model.agent_group_en }}</td>
                 <td></td>

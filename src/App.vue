@@ -6,6 +6,15 @@
       <v-list subheader dense>
         <v-subheader inset>صفحات</v-subheader>
 
+          <v-list-item @click="tab = 0">
+          <v-list-item-icon>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>صفحه اصلی</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        
         <v-list-item @click="tab = index + 1" v-for="(group, index) in groups" :key="group.name">
           <v-list-item-icon>
             <v-icon>mdi-page-next-outline</v-icon>
@@ -45,7 +54,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item @click="open">
+        <v-list-item href="https://github.com/HamedMasafi/vue-report-maker" target="_blank">
             <v-list-item-icon>
             <v-icon>mdi-github-circle</v-icon>
           </v-list-item-icon>
@@ -65,14 +74,14 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>فرم‌ساز {{(tab > 0 /*&& tab < groups.length + 1*/) ? ' - ' + groups[tab - 1].title : ''}}</v-toolbar-title>
 
-    <template v-slot:extension v-if="!drawer">
+    <!-- <template v-slot:extension v-if="!drawer">
 
       <v-tabs v-model="tab">
         <v-tab>صفحه اصلی</v-tab>
         <v-tab v-for="group in groups" :key="group.name">{{group.title}}</v-tab>
-        <!-- <v-tab>فرم‌ها</v-tab> -->
+        <!-- <v-tab>فرم‌ها</v-tab> -- >
       </v-tabs>
-    </template>
+    </template> -->
   </v-app-bar>
   
   <v-content class="d-print-none">
@@ -88,21 +97,21 @@
             :key="group.name">
           <v-card flat color="basil">
             <v-row v-for="field in group.fields" :key="field.name">
-              <v-col md="2" sm="12" xs="12" v-if="field.type === 'person'">
+              <v-col cols="12" md="2" lg="2" xl="2" v-if="field.type === 'person'">
                 <v-select 
                     v-model="model[field.name + '_sex']" 
                     label="جنسیت" 
                     :items="[{text:'آقا',value:'male'},{text:'خانم',value:'female'}]" >
                 </v-select>
               </v-col>
-              <v-col md="5" sm="12" xs="12"> 
+              <v-col cols="12" md="5" lg="5" xl="5"> 
                 <v-text-field 
                     v-model="model[field.name]" 
                     :label="field.title + ' به فارسی'" 
                     required>
                 </v-text-field>
               </v-col>
-              <v-col md="5" sm="12" xs="12">
+              <v-col cols="12" md="5" lg="5" xl="5">
                 <v-text-field 
                     v-model="model[field.name + '_en']" 
                     :label="field.title + ' به انگلیسی'" 
@@ -128,7 +137,7 @@
     <a class="d-print-none github-fork-ribbon left-top fixed" href="https://github.com/HamedMasafi/vue-report-maker" 
         data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
-    <div class="d-none d-print-block">
+    <div class="d-print-block d-none">
       <Form12 :model="model" />
       <Form1 :model="model" />
       <Form10 :model="model" />
@@ -157,6 +166,8 @@ import Vue from 'vue'
 
 // import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/style.css'
+import './assets/print.css'
+import './assets/screen.css'
 
 var settings = new Settings();
 
@@ -164,8 +175,8 @@ export default {
   name: 'app',
   data(){
       return{
-        tab: null,
-        drawer: false,
+        tab: 0,
+        drawer: null,
         groups: groups,
         props: props,
         forms: forms,
@@ -208,8 +219,6 @@ settings.load();
 
 <style>
 @import 'http://cdn.font-store.ir/nazanin.css';
-/* @import 'https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css'; */
-@import 'assets/style.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css';
 
 </style>

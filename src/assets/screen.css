@@ -1,0 +1,11 @@
+@media screen {
+    section.page {
+        /* display: none; */
+        border-bottom: 1px dashed gray;
+    }
+
+
+    section.page {
+        /* display: none; */
+    }
+}
