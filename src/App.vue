@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" dark>
     <v-navigation-drawer class="d-print-none"
         v-model="drawer"
         app right>
@@ -134,7 +134,13 @@
         </v-tab-item>
       </v-form>
       <v-tab-item v-if="show_forms">
-          <v-checkbox v-for="component in components_info" :key="component"  :label="component" value="true"/>
+          <v-checkbox v-for="(component, index) in components_props" 
+              :key="index"  
+              :label="component.title == undefined ? component.name : component.title" value="true"/>
+          <v-btn title="چاپ" @click="print" color="primary">
+            <v-icon>mdi-printer</v-icon>
+            چاپ
+          </v-btn>
       </v-tab-item>
     </v-tabs-items> 
       
@@ -148,13 +154,14 @@
         data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
     <div class="d-print-block d-none">
-      <Form12 :model="model" />
-      <Form1 :model="model" />
+      <!-- <Form12 :model="model" />
+      <Form1  :model="model" />
       <Form10 :model="model" />
       <DefenseLicense :model="model" />
       <Grade :model="model" dr="supervisor" />
       <Grade :model="model" dr="arbiter" />
-      <Grade :model="model" dr="consultant" />
+      <Grade :model="model" dr="consultant" /> -->
+      <component v-for="(cmp, index) in components_props" :is="cmp.name" :key="index" v-bind="prop(cmp.props)" />
     </div>
   </v-app>
 </template>
@@ -162,7 +169,7 @@
 <script>
 import Info from './components/Info'
 
-import { groups, props, forms, components_info } from './data'
+import { groups, props, forms, components_info, components_props } from './data'
 import { Settings, model } from './settings'
 import Vue from 'vue'
 
@@ -184,7 +191,8 @@ export default {
         props: props,
         forms: forms,
         model: model,
-        components_info: components_info
+        components_info: components_info,
+        components_props: components_props
       }
   },
   methods: {
@@ -197,13 +205,27 @@ export default {
     },
     save() {
       settings.to_file();
+    },
+    prop(p){
+      if (p == undefined) {
+        debugger;
+        return {}
+      }
+      p.model = model;
+      return p;
     }
   },
   components: {
     Info
   },
   created(){
-    this.components_info.forEach(function(ci){
+    var cl = [];
+    for (var cmp in components_props)
+      cl.push(components_props[cmp].name);
+    cl = cl.filter(function(item, pos) {
+      return cl.indexOf(item) == pos;
+    })
+    cl.forEach(function(ci){
       console.log("loading", ci);
       Vue.component(ci, () => import('./components/' + ci));
     })

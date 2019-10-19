@@ -28,12 +28,12 @@ export const groups = [
             tr: false,
             type: "number",
             group: "student"
-        },{
+        }, {
             name: "entrance_year",
             title: "سال ورودی",
             tr: false,
             type: "number"
-        },{
+        }, {
             name: "entrance_part",
             title: "ترم ورودی",
             tr: false,
@@ -182,4 +182,42 @@ export const components_info = [
     "Form1", "Form10", "Form12",
     "DefenseLicense",
     "Grade"
+]
+
+export const components_props = [
+    {
+        name: 'Form1',
+        title: 'فرم انتخاب استاد راهنمای پایان‌نامه‌های دانشجویان کارشناسی ‌ارشد',
+        props: {}
+    },
+    {
+        name: 'Form10',
+        title: 'فرم صورتجلسه دفاع از پايان نامه كارشناسي ارشد',
+        props: {}
+    },
+    {
+        name: 'Form12',
+        title: 'فرم کنترل و تحویل پایان نامه کارشناسی ارشد',
+        props: {}
+    },
+    {
+        name: 'DefenseLicense',
+        title: 'فرم مجوز دفاع از پایان نامه کارشناسی ارشد',
+        props: {}
+    },
+    {
+        name: 'Grade',
+        title: "فرم امتیازدهی استاد راهنما",
+        props: { dr: "supervisor" }
+    },
+    {
+        name: 'Grade',
+        title: "فرم امتیازدهی استاد داور",
+        props: { dr: "arbiter" }
+    },
+    {
+        name: 'Grade',
+        title: "فرم امتیازدهی استاد مشاور",
+        props: { dr: "consultant" }
+    }
 ]
