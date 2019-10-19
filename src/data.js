@@ -151,73 +151,48 @@ export const groups = [
         }]
     }
 ]
-export const props = [
-
-]
-
-export const forms = [
-    {
-        name: "form10",
-        placeholders: [
-            { from: "", to: "" }
-        ]
-    },
-    {
-        name: "grade",
-        placeholders: [
-            { from: "", to: "" }
-        ]
-    },
-    {
-        name: "defenselicense"
-    },
-    {
-        name: "proceedings"
-    }
-]
-
-
-
-export const components_info = [
-    "Form1", "Form10", "Form12",
-    "DefenseLicense",
-    "Grade"
-]
 
 export const components_props = [
     {
         name: 'Form1',
         title: 'فرم انتخاب استاد راهنمای پایان‌نامه‌های دانشجویان کارشناسی ‌ارشد',
+        show: true,
         props: {}
     },
     {
         name: 'Form10',
         title: 'فرم صورتجلسه دفاع از پايان نامه كارشناسي ارشد',
+        show: true,
         props: {}
     },
     {
         name: 'Form12',
         title: 'فرم کنترل و تحویل پایان نامه کارشناسی ارشد',
+        show: true,
         props: {}
     },
     {
         name: 'DefenseLicense',
         title: 'فرم مجوز دفاع از پایان نامه کارشناسی ارشد',
+        show: true,
         props: {}
     },
     {
         name: 'Grade',
         title: "فرم امتیازدهی استاد راهنما",
+        show: true,
         props: { dr: "supervisor" }
     },
     {
         name: 'Grade',
         title: "فرم امتیازدهی استاد داور",
+        show: true,
         props: { dr: "arbiter" }
     },
     {
         name: 'Grade',
         title: "فرم امتیازدهی استاد مشاور",
+        show: true,
         props: { dr: "consultant" }
     }
 ]

@@ -136,7 +136,8 @@
       <v-tab-item v-if="show_forms">
           <v-checkbox v-for="(component, index) in components_props" 
               :key="index"  
-              :label="component.title == undefined ? component.name : component.title" value="true"/>
+              v-model="reports[index]"
+              :label="component.title == undefined ? component.name : component.title" />
           <v-btn title="چاپ" @click="print" color="primary">
             <v-icon>mdi-printer</v-icon>
             چاپ
@@ -154,22 +155,20 @@
         data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
     <div class="d-print-block d-none">
-      <!-- <Form12 :model="model" />
-      <Form1  :model="model" />
-      <Form10 :model="model" />
-      <DefenseLicense :model="model" />
-      <Grade :model="model" dr="supervisor" />
-      <Grade :model="model" dr="arbiter" />
-      <Grade :model="model" dr="consultant" /> -->
-      <component v-for="(cmp, index) in components_props" :is="cmp.name" :key="index" v-bind="prop(cmp.props)" />
+      <component 
+          v-for="(cmp, index) in components_props" 
+          v-show="reports[index]"
+          :is="cmp.name" 
+          :key="index" v-bind="prop(cmp.props)" />
     </div>
+    
   </v-app>
 </template>
 
 <script>
 import Info from './components/Info'
 
-import { groups, props, forms, components_info, components_props } from './data'
+import { groups, components_props } from './data'
 import { Settings, model } from './settings'
 import Vue from 'vue'
 
@@ -179,6 +178,9 @@ import './assets/screen.css'
 // import './assets/debug.css'
 
 var settings = new Settings();
+var reports = [];
+for (var cmp in components_props)
+  reports.push(true);
 
 export default {
   name: 'app',
@@ -188,10 +190,8 @@ export default {
         drawer: null,
         groups: groups,
         show_forms: true,
-        props: props,
-        forms: forms,
         model: model,
-        components_info: components_info,
+        reports: reports,
         components_props: components_props
       }
   },
@@ -250,25 +250,11 @@ settings.load();
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  /* margin-left: 10px; */
-  /* margin-right: 10px; */
 }
 .btn svg {
     vertical-align: middle;
     margin-left: 5px;
 }
-/* .btn {
-  margin: 10px;
-} */
-/* .fab-container {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-}
-
-.fab-container button{
-  margin-top: 8px;
-} */
 .v-window-item{
   margin: 10px;
 }
