@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app" dark>
+  <v-app id="app" dark style="background-color: white">
     <v-navigation-drawer class="d-print-none"
         v-model="drawer"
         app right>

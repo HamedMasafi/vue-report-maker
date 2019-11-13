@@ -21,6 +21,7 @@
     }
     section.page {
         display: block;
+        background-color: white;
     }
       
 }
