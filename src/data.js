@@ -53,6 +53,10 @@ export const groups = [
             title: "شماره پیگیری ایران‌داک",
             type: "number",
             group: "thesis"
+        }, {
+            name: "defdate",
+            title: "تاریخ دقاع",
+            type: "string"
         }]
     }, {
         name: "supervisor",
@@ -194,5 +198,11 @@ export const components_props = [
         title: "فرم امتیازدهی استاد مشاور",
         show: true,
         props: { dr: "consultant" }
+    },
+    {
+        name: 'FinishReport',
+        title: "گواهی انجام اصلاحات پایان‌نامه",
+        show: true,
+        props: {}
     }
 ]

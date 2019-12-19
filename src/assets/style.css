@@ -97,3 +97,23 @@ section.page p {
 img.logo {
     width: 3cm;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.large-text{
+    font-size: 1.5em;
+}
+
+.m-t-2 {
+    margin-top: 2cm;
+}
+.m-b-2 {
+    margin-bottom: 2cm;
+}
+
+.m-2 {
+    margin-top: 2cm;
+    margin-bottom: 2cm;
+}
