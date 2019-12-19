@@ -20,7 +20,7 @@
     <table class="text-center large-text sec-2 m-2">
         <tr>
             <td>
-                نام و نام خانوادگی استاد داور ۱:
+                نام و نام خانوادگی استاد داور ۱
                 <br />
                 {{ model.drname('arbiter') }}
             </td>
@@ -35,7 +35,7 @@
     <table class="text-center large-text sec-2 m-2">
         <tr>
             <td>
-                نام و نام خانوادگی استاد مشاور:
+                نام و نام خانوادگی استاد مشاور
                 <br />
                 {{ model.drname('consultant') }}
             </td>
